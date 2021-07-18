@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/18 18:31:10 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 19:51:51 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int exit_and_free(t_data *data)
 	mlx_destroy_display(data->mlx);
 	if (data->mlx)
 		free(data->mlx);
-	if (data->g)
-		free(data->g);
 	if (data)
 		free(data);
 	exit(1);

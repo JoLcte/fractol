@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/16 18:52:21 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 19:44:07 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void up_config(const char *s, t_data *data)
 		data->g->c[R] = get_double(&s);
 	else
 		error_config("C's real coordinate must be between -1 and 1.", data);
-	while (*s == ',')
+	if (*s == ',')
 		++s;
 	if ((unsigned)*s - '0' < 10 || *s == '-')
-		data->g->c[R] = get_double(&s);
+		data->g->c[I] = get_double(&s);
 	else
 		error_config("C's imaginary coordinate must be between -1 and 1.", data);
 
