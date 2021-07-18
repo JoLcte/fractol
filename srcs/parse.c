@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/14 17:48:54 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/16 18:52:21 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,53 @@ int ft_atoi(const char **s)
 	return (n);
 }
 
-void up_config(const char *s, t_config *g)
+double	get_double(const char **s)
 {
-	if (*s)
+	double tmp;
+	double n;
+	int i;
+	int sign;
+	
+	n = 0;
+	i = 10;
+	sign = 1;
+	if (**s == '-')
 	{
-		while (*s == ' ')
-			++s;
-		if ((unsigned char)*s - '0'  < 10)
-			g->c[R] = ft_atoi(&s);
-		else
-			error_config("C real coordinate is not valid.", g);
-		while (*s == ' ')
-			++s;
-		if ((unsigned char)*s - '0'  < 10)
-			g->c[I] = ft_atoi(&s);
-		else
-			error_config("C imaginary coordinate is not valid.", g);
-		while (*s == ' ')
-			++s;
-		//if (*s)
-		//color gestion g->rgb = ...;
+		sign = -1;
+		++(*s);
 	}
+	n = ft_atoi(s);
+	if (**s == '.')
+	{
+		tmp = (unsigned)*(++*s) - '0';
+		while (tmp < 10)
+		{
+			n += tmp / i;
+			i *= 10;
+			tmp = (unsigned)*(++(*s)) - '0';
+		}
+	}
+	return (n * sign);
+}
+
+void up_config(const char *s, t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (*s == ' ')
+		++s;
+	if ((unsigned)*s - '0' < 10 || *s == '-')
+		data->g->c[R] = get_double(&s);
+	else
+		error_config("C's real coordinate must be between -1 and 1.", data);
+	while (*s == ',')
+		++s;
+	if ((unsigned)*s - '0' < 10 || *s == '-')
+		data->g->c[R] = get_double(&s);
+	else
+		error_config("C's imaginary coordinate must be between -1 and 1.", data);
+
+
+	//color_parsing;
 }

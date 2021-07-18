@@ -6,7 +6,7 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/07/13 20:26:08 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/07/16 18:43:41 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,11 @@ FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lbsd
 OBJ_DIR = obj
 SRC_DIR = srcs
 
-SRC_F = render.c\
-		fractol.c
+SRC_F = error.c\
+	mlx_utils.c\
+	parse.c\
+	render.c\
+	fractol.c
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_F))
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_F:%.c=%.o))

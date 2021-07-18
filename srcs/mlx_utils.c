@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/14 16:31:57 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 18:31:10 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 int rgb_to_color(float *rgb)
 {
-	return ((int)rgb[R] << 16 | (int)rgb[G] << 8 | (int)rgb[B]);
+	return ((int)rgb[0] << 16 | (int)rgb[1] << 8 | (int)rgb[2]);
 }
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char *dst;
 
-	dst = data->addr + ( y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length +
+		       x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

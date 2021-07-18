@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/14 17:48:39 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/16 18:50:42 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 typedef struct s_config
 {
 	float c[2];
-	int rgb[64];
+	int rgb[16];
 } t_config;
 
 typedef struct s_data
@@ -55,7 +55,8 @@ typedef struct s_data
 
 void	check_arg(char **str);
 int		ft_atoi(const char **s);
-void	up_config(const char *s, t_config *g);
+double	get_double(const char **s);
+void	up_config(const char *s, t_data *data);
 
 
 /*
@@ -63,7 +64,7 @@ void	up_config(const char *s, t_config *g);
 */
 
 void	error_arg(const char *s);
-void	error_config(const char *s, t_config *g);
+void	error_config(const char *s, t_data *data);
 
 /*
 **	MLX
