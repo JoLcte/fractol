@@ -6,15 +6,15 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/18 19:51:51 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:29:58 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int rgb_to_color(float *rgb)
+int rgb_to_color(uint8_t r, uint8_t g, uint8_t b)
 {
-	return ((int)rgb[0] << 16 | (int)rgb[1] << 8 | (int)rgb[2]);
+	return ((int)r << 16 | (int)g << 8 | (int)b);
 }
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)

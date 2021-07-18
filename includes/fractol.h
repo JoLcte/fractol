@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/16 18:50:42 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:32:11 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include "mlx.h"
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -70,7 +71,7 @@ void	error_config(const char *s, t_data *data);
 **	MLX
 */
 
-int		rgb_to_color(float *rgb);
+int		rgb_to_color(uint8_t r, uint8_t g, uint8_t b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:18:07 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/18 20:06:28 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:24:04 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	julia_magic(t_config *g, float a, float b)
 		a = tmp;
 	}
 	if (n != n_max)
-		color = n * 16777215 / n_max;
-		//color = g->rgb[n % 64];
+		//color = n * 16777215 / n_max;
+		color = g->rgb[n % 16];
 	else
 		color = 0;
 	return (color);

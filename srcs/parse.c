@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/18 19:44:07 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/18 21:33:08 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,22 @@ void up_config(const char *s, t_data *data)
 	else
 		error_config("C's imaginary coordinate must be between -1 and 1.", data);
 
+	data->g->rgb[0] = rgb_to_color(66, 30, 15);
+	data->g->rgb[1] = rgb_to_color(25, 7, 26);
+	data->g->rgb[2] = rgb_to_color(9, 1, 47);
+	data->g->rgb[3] = rgb_to_color(4, 4, 73);
+	data->g->rgb[4] = rgb_to_color(0, 7, 100);
+	data->g->rgb[5] = rgb_to_color(12, 47, 138);
+	data->g->rgb[6] = rgb_to_color(24, 82, 177);
+	data->g->rgb[7] = rgb_to_color(57, 125, 209);
+	data->g->rgb[8] = rgb_to_color(134, 181, 229);
+	data->g->rgb[9] = rgb_to_color(211, 236, 248);
+	data->g->rgb[10] = rgb_to_color(243, 233, 191);
+	data->g->rgb[11] = rgb_to_color(248, 201, 95);
+	data->g->rgb[12] = rgb_to_color(255, 170, 0);
+	data->g->rgb[13] = rgb_to_color(204, 128, 0);
+	data->g->rgb[14] = rgb_to_color(153, 87, 0);
+	data->g->rgb[15] = rgb_to_color(106, 52, 3);
 
 	//color_parsing;
 }
