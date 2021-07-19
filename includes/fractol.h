@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/18 21:32:11 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/19 20:04:59 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_config
 {
 	float c[2];
 	int rgb[16];
+	int res[2];
+	char set;
 } t_config;
 
 typedef struct s_data
@@ -54,10 +56,10 @@ typedef struct s_data
 **	PARSING
 */
 
-void	check_arg(char **str);
-int		ft_atoi(const char **s);
-double	get_double(const char **s);
-void	up_config(const char *s, t_data *data);
+void	check_arg(t_config *g, char **str);
+int		ft_atoi(char **s);
+double	get_double(char **s);
+//void	up_config(const char *s, t_data *data);
 
 
 /*
@@ -80,6 +82,8 @@ int		get_keypress(int key, t_data *data);
 **	FRACTOL
 */
 
-void render(const char *s, t_data *data);
+void render(t_data *data);
+int		julia_magic(t_config *g, float a, float b);
+int		mandelbrot_magic(t_config *g, float cr, float ci);
 
 #endif
