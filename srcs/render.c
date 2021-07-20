@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:18:07 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/20 16:19:54 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/20 18:51:07 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	render(t_data *data)
 	int color;
 	int i;
 	int j;
-	float factor = 3.0 / data->g->res[Y];
 
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, data->g->res[X], data->g->res[Y], "fractol");
@@ -78,9 +77,9 @@ void	render(t_data *data)
 		while (i < data->g->res[X])
 		{
 			if (data->g->set == 'j')
-				color = julia_magic(data->g, -1.5 + (float)i * factor, 1.5 - (float)j * factor);
+				color = julia_magic(data->g, data->g->ul[X] + (float)i * data->g->factor_x, data->g->ul[Y] - (float)j * data->g->factor_y);
 			else if (data->g->set == 'm')
-				color = mandelbrot_magic(data->g, -2.5 + (float)i * factor, 1.5 - (float)j * factor);
+				color = mandelbrot_magic(data->g, data->g->ul[X] + (float)i * data->g->factor_x, data->g->ul[Y] - (float)j * data->g->factor_y);
 			my_mlx_pixel_put(data, i, j, color);
 			++i;
 		}
@@ -88,7 +87,8 @@ void	render(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_hook(data->win, 2, 1L<<0, get_keypress, data);
-	mlx_hook(data->win, 4, 4L<<0, get_mouse_scroll, data);
+	mlx_hook(data->win, 4, 4, get_mouse_scroll, data);
+	
 	mlx_hook(data->win, 33, 1L<<17, exit_and_free, data);
 	mlx_loop(data->mlx);
 }

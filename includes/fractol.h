@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/20 16:26:35 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/20 18:30:00 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@
 typedef struct s_config
 {
 	float c[2];
+	float ul[2];
 	int rgb[16];
 	int res[2];
+	float factor_x;
+	float factor_y;
 	char set;
 } t_config;
 
@@ -77,13 +80,13 @@ int		rgb_to_color(uint8_t r, uint8_t g, uint8_t b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);
-int		get_mouse_scroll(int key, t_data *data);
+int		get_mouse_scroll(int key, int x, int y, t_data *data);
 
 /*
 **	FRACTOL
 */
 
-void render(t_data *data);
+void	render(t_data *data);
 int		julia_magic(t_config *g, float a, float b);
 int		mandelbrot_magic(t_config *g, float cr, float ci);
 

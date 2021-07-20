@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/19 21:53:40 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/20 18:52:33 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void check_arg(t_config *g, char **str)
 			else
 				error_arg("C's imaginary coordinate must be between -1 and 1.");
 		}
+			g->ul[X] = -1.5;
+			g->ul[Y] = 1.5;
+	g->factor_x = 2 * fabs(g->ul[X]) / (g->res[X] - 1);
+	g->factor_y = 2 * fabs(g->ul[Y]) / (g->res[Y] - 1);
 	}
 	else
 	{
@@ -63,6 +67,10 @@ void check_arg(t_config *g, char **str)
 		g->set = 'm';
 		g->res[X] = 1600;
 		g->res[Y] = 1200;
+		g->ul[X] = -2.0;
+		g->ul[Y] = 1.5;
+		g->factor_x = 2 * fabs(g->ul[X]) / (g->res[X] - 1);
+		g->factor_y = 2 * fabs(g->ul[Y]) / (g->res[Y] - 1);
 	}
 	g->rgb[0] = rgb_to_color(66, 30, 15);
 	g->rgb[1] = rgb_to_color(25, 7, 26);
