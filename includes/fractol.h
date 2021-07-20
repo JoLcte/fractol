@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/19 20:04:59 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:26:35 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		rgb_to_color(uint8_t r, uint8_t g, uint8_t b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);
+int		get_mouse_scroll(int key, t_data *data);
 
 /*
 **	FRACTOL

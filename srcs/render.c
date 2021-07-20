@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:18:07 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/19 21:53:12 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/20 16:19:54 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	render(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_hook(data->win, 2, 1L<<0, get_keypress, data);
+	mlx_hook(data->win, 4, 4L<<0, get_mouse_scroll, data);
 	mlx_hook(data->win, 33, 1L<<17, exit_and_free, data);
 	mlx_loop(data->mlx);
 }
