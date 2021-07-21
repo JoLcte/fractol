@@ -6,7 +6,7 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/07/16 18:43:41 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/07/22 00:45:10 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,12 @@ OBJ_DIR = obj
 SRC_DIR = srcs
 
 SRC_F = error.c\
-	mlx_utils.c\
-	parse.c\
-	render.c\
-	fractol.c
+		key_move.c\
+		mlx_utils.c\
+		parse.c\
+		render.c\
+		zoom.c\
+		fractol.c
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_F))
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_F:%.c=%.o))
@@ -49,8 +51,8 @@ clean:
 	@echo "\e[38;5;125mRemoved Object Files"
 
 fclean: clean
-	# @echo "\e[38;5;161mRemoved - MLX_LINUX Library -\e[m"
-	# @rm -f mlx_linux/libmlx.a mlx_mlx_Linux.a
+	@echo "\e[38;5;161mRemoved - MLX_LINUX Library -\e[m"
+	@rm -f mlx_linux/libmlx.a mlx_mlx_Linux.a
 	@rm -f $(NAME)
 	@echo "\e[38;5;161mRemoved - $(NAME) -"
 

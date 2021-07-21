@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/21 23:57:46 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:37:37 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,46 +39,6 @@ int exit_and_free(t_data *data)
 	return (1);
 }
 
-void zoom_in(int x, int y, t_data *data)
-{
-	t_config *g;
-	float tmp;
-
-	g = data->g;
-	tmp = g->canva_s * 0.9 - g->canva_s;
-	g->ul[X] *= 0.9;
-	g->ul[Y] *= 0.9;
-	g->ul[X] += (g->res * 0.5 - x) * tmp / (g->res - 1);
-	g->ul[Y] += (g->res * 0.5 - y) * tmp / (g->res - 1);
-	g->canva_s *= 0.9;
-	g->factor = g->canva_s / (g->res - 1);
-	if (g->set)
-		julia_loop(data);
-	else
-		mandelbrot_loop(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-}
-
-void zoom_out(int x, int y, t_data *data)
-{
-	t_config *g;
-	float tmp;
-
-	g = data->g;
-	tmp = g->canva_s * 1.1 - g->canva_s;
-	g->ul[X] *= 1.1;
-	g->ul[Y] *= 1.1;
-	g->ul[X] += (g->res * 0.5 - x) * tmp / (g->res - 1);
-	g->ul[Y] += (g->res * 0.5 - y) * tmp / (g->res - 1);
-	g->canva_s *= 1.1;
-	g->factor = g->canva_s / (g->res - 1);
-	if (g->set)
-		julia_loop(data);
-	else
-		mandelbrot_loop(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-}
-
 int get_mouse_scroll(int key, int x, int y, t_data *data)
 {
 	if (key == 5)
@@ -90,9 +50,16 @@ int get_mouse_scroll(int key, int x, int y, t_data *data)
 
 int get_keypress(int key, t_data *data)
 {
+	printf("key = %d\n", key);
 	if (key == 65307)
 		return (exit_and_free(data));
-	else
-		printf("key = %d\n", key);
+	else if (key == 65362 || key == 119)
+		move_up(data);
+	else if (key == 65364 || key == 115)
+		move_down(data);
+	else if (key == 65361 || key == 97)
+		move_left(data);
+	else if (key == 65363 || key == 100)
+		move_right(data);
 	return (1);
 }

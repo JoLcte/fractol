@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/21 23:49:33 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 00:31:33 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);
 int		get_mouse_scroll(int key, int x, int y, t_data *data);
+void	move_down(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_up(t_data *data);
 void	zoom_in(int x, int y, t_data *data);
 void	zoom_out(int x, int y, t_data *data);
 
