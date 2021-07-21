@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/20 18:52:33 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:49:42 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void check_arg(t_config *g, char **str)
 
 	n1 = 5;
 	n2 = 10;
+	g->res = 1200;
+	g->canva_s = 3.0;
+	g->ul[X] = - g->canva_s / 2.0;
+	g->ul[Y] = g->canva_s / 2.0;
+	g->factor = g->canva_s / (g->res - 1);
 	if (*s == 'j')
 	{
 		while (n1-- > 0 && *s1)
@@ -29,9 +34,7 @@ void check_arg(t_config *g, char **str)
 				error_arg("'julia' is misspelled.");
 		if (*s && *s != ' ')
 			error_arg("'julia' is misspelled.");
-		g->set = 'j';
-		g->res[X] = 1200;
-		g->res[Y] = 1200;
+		g->set = 1.0;
 		if (!*s)
 		{
 			g->c[R] = 0.285;
@@ -52,10 +55,6 @@ void check_arg(t_config *g, char **str)
 			else
 				error_arg("C's imaginary coordinate must be between -1 and 1.");
 		}
-			g->ul[X] = -1.5;
-			g->ul[Y] = 1.5;
-	g->factor_x = 2 * fabs(g->ul[X]) / (g->res[X] - 1);
-	g->factor_y = 2 * fabs(g->ul[Y]) / (g->res[Y] - 1);
 	}
 	else
 	{
@@ -64,13 +63,8 @@ void check_arg(t_config *g, char **str)
 				error_arg("'mandelbrot' is misspelled.");
 		if (*s && *s != ' ')
 			error_arg("'mandelbrot' is misspelled.");
-		g->set = 'm';
-		g->res[X] = 1600;
-		g->res[Y] = 1200;
-		g->ul[X] = -2.0;
-		g->ul[Y] = 1.5;
-		g->factor_x = 2 * fabs(g->ul[X]) / (g->res[X] - 1);
-		g->factor_y = 2 * fabs(g->ul[Y]) / (g->res[Y] - 1);
+		g->set = 0.0;
+		g->ul[X] -= 0.55;
 	}
 	g->rgb[0] = rgb_to_color(66, 30, 15);
 	g->rgb[1] = rgb_to_color(25, 7, 26);

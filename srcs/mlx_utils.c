@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/20 18:53:18 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:57:46 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char *dst;
 
-	dst = data->addr + (y * data->line_length +
-			x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_len +
+			x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -39,35 +39,52 @@ int exit_and_free(t_data *data)
 	return (1);
 }
 
+void zoom_in(int x, int y, t_data *data)
+{
+	t_config *g;
+	float tmp;
+
+	g = data->g;
+	tmp = g->canva_s * 0.9 - g->canva_s;
+	g->ul[X] *= 0.9;
+	g->ul[Y] *= 0.9;
+	g->ul[X] += (g->res * 0.5 - x) * tmp / (g->res - 1);
+	g->ul[Y] += (g->res * 0.5 - y) * tmp / (g->res - 1);
+	g->canva_s *= 0.9;
+	g->factor = g->canva_s / (g->res - 1);
+	if (g->set)
+		julia_loop(data);
+	else
+		mandelbrot_loop(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
+
+void zoom_out(int x, int y, t_data *data)
+{
+	t_config *g;
+	float tmp;
+
+	g = data->g;
+	tmp = g->canva_s * 1.1 - g->canva_s;
+	g->ul[X] *= 1.1;
+	g->ul[Y] *= 1.1;
+	g->ul[X] += (g->res * 0.5 - x) * tmp / (g->res - 1);
+	g->ul[Y] += (g->res * 0.5 - y) * tmp / (g->res - 1);
+	g->canva_s *= 1.1;
+	g->factor = g->canva_s / (g->res - 1);
+	if (g->set)
+		julia_loop(data);
+	else
+		mandelbrot_loop(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
+
 int get_mouse_scroll(int key, int x, int y, t_data *data)
 {
-	int i;
-	int j;
-	float factor;
-	int color;
-
-	(void)x;
-	(void)y;
-	factor = 1 / data->g->res[Y];
 	if (key == 5)
-	{
-		j = 0;
-		while (j < data->g->res[Y])
-		{
-			i = 0;
-			while (i < data->g->res[X])
-			{
-				if (data->g->set == 'j')
-					color = julia_magic(data->g, -1.5 * 0.9 + (float)i * factor * 0.5, 1.5 * 0.5 - (float)j * factor * 0.5);
-				else if (data->g->set == 'm')
-					color = mandelbrot_magic(data->g, -2.5 * 0.5 + (float)i * factor * 0.5, 1.5 * 0.5 - (float)j * factor * 0.5);
-				my_mlx_pixel_put(data, i, j, color);
-				++i;
-			}
-			++j;
-		}
-		mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	}
+		zoom_in(x, y, data);
+	else if (key == 4)
+		zoom_out(x, y, data);
 	return (1);
 }
 
