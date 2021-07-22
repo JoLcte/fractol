@@ -6,16 +6,16 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/07/22 00:45:10 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/07/22 15:46:19 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-CCF = clang -Wall -Wextra -Werror -g3
+CCF = clang -Wall -Wextra -Werror -O3
 FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lbsd
 
 OBJ_DIR = obj
-SRC_DIR = srcs
+SRC_DIR = src
 
 SRC_F = error.c\
 		key_move.c\

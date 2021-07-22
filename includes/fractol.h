@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 00:31:33 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 14:34:28 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@
 typedef struct s_config
 {
 	float c[2];
-	float ul[2];
 	float mouse_pos[2];
+	float ul[2];
 	int rgb[16];
-	float res;
-	float factor;
 	float canva_s;
+	float factor;
+	float res;
 	float set;
 } t_config;
 
 typedef struct s_data
 {
 	t_config *g;
-	void *mlx;
-	void *img;
 	char *addr;
+	void *img;
+	void *mlx;
 	void *win;
 	int bpp;
 	int line_len;
@@ -72,6 +72,7 @@ double	get_double(char **s);
 
 void	error_arg(const char *s);
 void	error_config(const char *s, t_data *data);
+void	error_type(void);
 
 /*
 **	MLX
@@ -97,6 +98,8 @@ void	julia_loop(t_data *data);
 int		julia_magic(t_config *g, float a, float b);
 void	mandelbrot_loop(t_data *data);
 int		mandelbrot_magic(t_config *g, float cr, float ci);
+void	burning_ship_loop(t_data *data);
+int		burning_ship_magic(t_config *g, float cr, float ci);
 void	render(t_data *data);
 
 #endif
