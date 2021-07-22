@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 00:26:22 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 14:38:18 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 23:25:39 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_up(t_data *data)
 	t_config *g;
 
 	g = data->g;
-	g->ul[Y] += 10 * g->canva_s / (g->res - 1);
+	g->ul[Y] += 10 * g->factor;
 	if (g->set > 0)
 		julia_loop(data);
 	else if (g->set < 0)
@@ -32,7 +32,7 @@ void	move_down(t_data *data)
 	t_config *g;
 
 	g = data->g;
-	g->ul[Y] -= 10 * g->canva_s / (g->res - 1);
+	g->ul[Y] -= 10 * g->factor;
 	if (g->set > 0)
 		julia_loop(data);
 	else if (g->set < 0)
@@ -47,7 +47,7 @@ void	move_left(t_data *data)
 	t_config *g;
 
 	g = data->g;
-	g->ul[X] -= 10 * g->canva_s / (g->res - 1);
+	g->ul[X] -= 10 * g->factor;
 	if (g->set > 0)
 		julia_loop(data);
 	else if (g->set < 0)
@@ -62,8 +62,8 @@ void	move_right(t_data *data)
 	t_config *g;
 
 	g = data->g;
-	g->ul[X] += 10 * g->canva_s / (g->res - 1);
-	if (g->set < 0)
+	g->ul[X] += 10 * g->factor;
+	if (g->set > 0)
 		julia_loop(data);
 	else if (g->set < 0)
 		burning_ship_loop(data);

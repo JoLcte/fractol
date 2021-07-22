@@ -1,53 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.c                                             :+:      :+:    :+:   */
+/*   bonus_keys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/22 00:24:11 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 00:41:38 by jlecomte         ###   ########.fr       */
+/*   Created: 2021/07/23 00:00:56 by jlecomte          #+#    #+#             */
+/*   Updated: 2021/07/23 00:16:35 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void zoom_in(int x, int y, t_data *data)
+void switch_palette(t_data *data)
 {
 	t_config *g;
-	float tmp;
 
 	g = data->g;
-	tmp = g->canva_s * 0.8 - g->canva_s;
-	g->ul[X] *= 0.8;
-	g->ul[Y] *= 0.8;
-	g->ul[X] += x * tmp / (g->res - 1);
-	g->ul[Y] += y * tmp / (g->res - 1);
-	g->canva_s *= 0.8;
-	g->factor = g->canva_s / (g->res - 1);
-	if (g->set)
+	if (g->n_colors == 16)
+		rgb_palette(g, 2);
+	else if (g->n_colors == 29)
+		rgb_palette(g, 1);
+	if (g->set > 0)
 		julia_loop(data);
+	else if (g->set < 0)
+		burning_ship_loop(data);
 	else
 		mandelbrot_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
-void zoom_out(int x, int y, t_data *data)
+void	change_julia(t_data *data, int key)
 {
 	t_config *g;
-	float tmp;
 
 	g = data->g;
-	tmp = g->canva_s * 1.1 - g->canva_s;
-	g->ul[X] *= 1.1;
-	g->ul[Y] *= 1.1;
-	g->ul[X] += x * tmp / (g->res - 1);
-	g->ul[Y] += y * tmp / (g->res - 1);
-	g->canva_s *= 1.1;
-	g->factor = g->canva_s / (g->res - 1);
-	if (g->set)
-		julia_loop(data);
+	if (key == 120)
+	{
+		g->c[R] = -0.51;
+		g->c[I] = 0.52;
+	}
+	else if (key == 122)
+	{
+		g->c[R] = 0.285;
+		g->c[I] = 0.01;
+	}
+	else if (key == 105)
+		g->c[R] += 0.001;
+	else if (key == 106)
+		g->c[I] += 0.001;
+	else if (key == 107)
+		g->c[R] -= 0.001;
 	else
-		mandelbrot_loop(data);
+		g->c[I] -= 0.001;
+	julia_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

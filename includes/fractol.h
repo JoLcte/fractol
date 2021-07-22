@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 14:34:28 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/23 00:12:27 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@
 typedef struct s_config
 {
 	float c[2];
-	float mouse_pos[2];
+	float center[2];
 	float ul[2];
-	int rgb[16];
+	int rgb[29];
 	float canva_s;
 	float factor;
 	float res;
-	float set;
+	int n_colors;
+	int set;
 } t_config;
 
 typedef struct s_data
@@ -60,10 +61,9 @@ typedef struct s_data
 **	PARSING
 */
 
-void	check_arg(t_config *g, char **str);
-int		ft_atoi(char **s);
-double	get_double(char **s);
-//void	up_config(const char *s, t_data *data);
+int	check_arg(const char *s1, const char *s2, int n);
+void	init_g(t_config *g);
+void	parse(t_config *g, char *s);
 
 
 /*
@@ -78,7 +78,7 @@ void	error_type(void);
 **	MLX
 */
 
-int		rgb_to_color(uint8_t r, uint8_t g, uint8_t b);
+void	change_julia(t_data *data, int key);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);
@@ -89,6 +89,7 @@ void	move_right(t_data *data);
 void	move_up(t_data *data);
 void	zoom_in(int x, int y, t_data *data);
 void	zoom_out(int x, int y, t_data *data);
+void	print_help(void);
 
 /*
 **	FRACTOL
@@ -100,6 +101,8 @@ void	mandelbrot_loop(t_data *data);
 int		mandelbrot_magic(t_config *g, float cr, float ci);
 void	burning_ship_loop(t_data *data);
 int		burning_ship_magic(t_config *g, float cr, float ci);
+void	rgb_palette(t_config *g, int n);
+void	switch_palette(t_data *data);
 void	render(t_data *data);
 
 #endif

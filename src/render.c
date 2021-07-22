@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:18:07 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 15:35:12 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 22:20:19 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	mandelbrot_magic(t_config *g, float cr, float ci)
 		z[X] = tmp;
 	}
 	if (n < n_max)
-		color = g->rgb[n % 16];
+		color = g->rgb[n % g->n_colors];
 	return (color);
 }
 
@@ -84,7 +84,7 @@ int	burning_ship_magic(t_config *g, float cr, float ci)
 		z[X] = tmp;
 	}
 	if (n < n_max)
-		color = g->rgb[n % 16];
+		color = g->rgb[n % g->n_colors];
 	return (color);
 }
 
@@ -127,8 +127,7 @@ int	julia_magic(t_config *g, float a, float b)
 		a = tmp;
 	}
 	if (n < n_max)
-		//color = n * 16777215 / n_max;
-		color = g->rgb[n % 16];
+		color = g->rgb[n % g->n_colors];
 	return (color);
 }
 

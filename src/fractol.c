@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:27:57 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 14:33:46 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/22 23:55:24 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	render(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->g->res, data->g->res);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp,
 		&data->line_len, &data->endian);
-	if (data->g->set >  0)
+	if (data->g->set > 0)
 		julia_loop(data);
 	else if (data->g->set < 0)
 		burning_ship_loop(data);
@@ -45,16 +45,16 @@ int main(int ac, char **av)
 			error_type();
 		else
 		{
-			check_arg(&g, &av[1]);
+			init_g(&g);
+			parse(&g, av[1]);
 			data = (t_data *)malloc(sizeof(t_data));
 			if (!data)
 				error_arg("Memory could not be allocated.");
 			data->g = &g;
 			render(data);
 		}
-		//gradient(g->rgb, ...);
 	}
 	else
-		printf("valid arguments = ... to be continued\n");
+		error_type();
 	return (0);
 }
