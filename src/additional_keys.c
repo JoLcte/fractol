@@ -6,15 +6,15 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 00:00:56 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/23 00:16:35 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/24 10:56:43 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void switch_palette(t_data *data)
+void	switch_palette(t_data *data)
 {
-	t_config *g;
+	t_config	*g;
 
 	g = data->g;
 	if (g->n_colors == 16)
@@ -32,7 +32,7 @@ void switch_palette(t_data *data)
 
 void	change_julia(t_data *data, int key)
 {
-	t_config *g;
+	t_config	*g;
 
 	g = data->g;
 	if (key == 120)
@@ -54,5 +54,20 @@ void	change_julia(t_data *data, int key)
 	else
 		g->c[I] -= 0.001;
 	julia_loop(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
+
+void	change_burning_ship(t_data *data)
+{
+	t_config	*g;
+
+	g = data->g;
+	g->canva_s = 0.1;
+	g->factor = g->canva_s / g->res;
+	g->ul[X] = -1.8;
+	g->ul[Y] = 0.09;
+	g->center[X] = g->ul[X] + g->canva_s / 2;
+	g->center[Y] = g->ul[Y] - g->canva_s / 2;
+	burning_ship_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

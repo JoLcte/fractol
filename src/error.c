@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 16:14:43 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 14:34:46 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/24 10:42:45 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	error_arg(const char *s)
 	exit(0);
 }
 
-void error_config(const char *s, t_data *data)
+void	error_config(const char *s, t_data *data)
 {
 	printf("\e[38;5;196mError:\e[m\n");
 	printf("%s\n", s);
@@ -28,7 +28,7 @@ void error_config(const char *s, t_data *data)
 	exit(0);
 }
 
-void error_type(void)
+void	error_type(void)
 {
 	printf("\e[38;5;196mError:\e[m\n");
 	printf("Type 'julia, 'mandelbrot' or 'burningship' for a fractal type.\n");

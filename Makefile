@@ -6,7 +6,7 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/07/23 00:02:14 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/07/24 12:32:25 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,17 @@ FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lbsd
 OBJ_DIR = obj
 SRC_DIR = src
 
-SRC_F = error.c\
-		key_move.c\
-		mlx_utils.c\
-		palette.c\
-		parse.c\
-		render.c\
-		zoom.c\
-		bonus_keys.c\
-		fractol.c
+SRC_F = burning_ship.c\
+	error.c\
+	key_move.c\
+	julia.c\
+	mandelbrot.c\
+	mlx_utils.c\
+	palette.c\
+	parse.c\
+	zoom.c\
+	additional_keys.c\
+	fractol.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_F))
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_F:%.c=%.o))
 

@@ -6,22 +6,22 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/23 00:33:05 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/24 10:57:24 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
-	dst = data->addr + (y * data->line_len +
-			x * (data->bpp / 8));
+	dst = data->addr + (y * data->line_len
+			+ x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-int exit_and_free(t_data *data)
+int	exit_and_free(t_data *data)
 {
 	mlx_do_key_autorepeaton(data->mlx);
 	mlx_destroy_image(data->mlx, data->img);
@@ -33,22 +33,6 @@ int exit_and_free(t_data *data)
 		free(data);
 	exit(1);
 	return (1);
-}
-
-static void change_burning_ship(t_data *data)
-{
-	t_config *g;
-
-	g = data->g;
-	g->canva_s = 0.1;
-	g->factor = g->canva_s / g->res;
-	g->ul[X] = -1.8;
-	g->ul[Y] = 0.09;
-	g->center[X] = g->ul[X] + g->canva_s / 2;
-	g->center[Y] = g->ul[Y] - g->canva_s / 2;
-	burning_ship_loop(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-
 }
 
 void	print_help(void)
@@ -72,7 +56,7 @@ void	print_help(void)
 	printf("   -------------------------------------------------\n");
 }
 
-int get_mouse_scroll(int key, int x, int y, t_data *data)
+int	get_mouse_scroll(int key, int x, int y, t_data *data)
 {
 	if (key == 5)
 		zoom_in(x, y, data);
@@ -81,8 +65,11 @@ int get_mouse_scroll(int key, int x, int y, t_data *data)
 	return (1);
 }
 
-int get_keypress(int key, t_data *data)
+int	get_keypress(int key, t_data *data)
 {
+	t_config	*g;
+
+	g = data->g;
 	if (key == 65307)
 		return (exit_and_free(data));
 	else if (key == 104)
@@ -98,9 +85,9 @@ int get_keypress(int key, t_data *data)
 	else if (key == 32)
 		switch_palette(data);
 	else if ((key == 105 || key == 106 || key == 107 || key == 108
-				|| key == 120 || key == 122) && data->g->set == 1)
+			|| key == 120 || key == 122) && g->set == 1)
 		change_julia(data, key);
-	else if (key == 98 && data->g->set == -1)
+	else if (key == 98 && g->set == -1)
 		change_burning_ship(data);
 	return (1);
 }

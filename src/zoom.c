@@ -6,16 +6,16 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 00:24:11 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/22 22:43:13 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/24 12:36:17 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void zoom_in(int x, int y, t_data *data)
+void	zoom_in(int x, int y, t_data *data)
 {
-	t_config *g;
-	float tmp;
+	t_config	*g;
+	float		tmp;
 
 	g = data->g;
 	tmp = g->canva_s * 0.9 - g->canva_s;
@@ -34,10 +34,10 @@ void zoom_in(int x, int y, t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
-void zoom_out(int x, int y, t_data *data)
+void	zoom_out(int x, int y, t_data *data)
 {
-	t_config *g;
-	float tmp;
+	t_config	*g;
+	float		tmp;
 
 	g = data->g;
 	tmp = g->canva_s * 1.1 - g->canva_s;

@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/23 00:12:27 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:28:04 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # define Y 1
 # define R 0
 # define I 1
-# define red 1
-# define green 2
-# define blue 3
 
 /*
  ** DATA
@@ -34,37 +31,36 @@
 
 typedef struct s_config
 {
-	float c[2];
-	float center[2];
-	float ul[2];
-	int rgb[29];
-	float canva_s;
-	float factor;
-	float res;
-	int n_colors;
-	int set;
-} t_config;
+	float	c[2];
+	float	center[2];
+	float	ul[2];
+	int		rgb[29];
+	float	canva_s;
+	float	factor;
+	float	res;
+	int		n_colors;
+	int		set;
+}	t_config;
 
 typedef struct s_data
 {
-	t_config *g;
-	char *addr;
-	void *img;
-	void *mlx;
-	void *win;
-	int bpp;
-	int line_len;
-	int endian;
-} t_data;
+	t_config	*g;
+	char		*addr;
+	void		*img;
+	void		*mlx;
+	void		*win;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}	t_data;
 
 /*
 **	PARSING
 */
 
-int	check_arg(const char *s1, const char *s2, int n);
+int		check_arg(const char *s1, const char *s2, int n);
 void	init_g(t_config *g);
 void	parse(t_config *g, char *s);
-
 
 /*
 **	ERROR
@@ -78,6 +74,7 @@ void	error_type(void);
 **	MLX
 */
 
+void	change_burning_ship(t_data *data);
 void	change_julia(t_data *data, int key);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
