@@ -6,75 +6,95 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:29:15 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/24 12:35:32 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/28 00:41:55 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	colors_16(int *rgb)
+void	init_indexes(int *indexes, int size, int n)
 {
-	rgb[0] = 0x421E0F;
-	rgb[1] = 0x19071A;
-	rgb[2] = 0x09012F;
-	rgb[3] = 0x040449;
-	rgb[4] = 0x000764;
-	rgb[5] = 0x0C2F8A;
-	rgb[6] = 0x1852B1;
-	rgb[7] = 0x397DD1;
-	rgb[8] = 0x86B5E5;
-	rgb[9] = 0xD3ECF8;
-	rgb[10] = 0xF3E9BF;
-	rgb[11] = 0xF8C95F;
-	rgb[12] = 0xFFAA00;
-	rgb[13] = 0xCC8000;
-	rgb[14] = 0x995700;
-	rgb[15] = 0x6A3403;
+	const int	scalar = size / (n - 1);
+	int			i;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		indexes[i] = scalar * i;
+		++i;
+	}
+	indexes[i] = size - 1;
 }
 
-static void	colors_29(int *rgb)
+void	lerp_hexa(int c1, int c2, int t, int *rgb)
 {
-	rgb[0] = 0x520016;
-	rgb[1] = 0x870E37;
-	rgb[2] = 0xB64B5D;
-	rgb[3] = 0xDB8E84;
-	rgb[4] = 0xEEC8a3;
-	rgb[5] = 0xF1eFc9;
-	rgb[6] = 0xE2EDE2;
-	rgb[7] = 0xC0CFF0;
-	rgb[8] = 0x9197F2;
-	rgb[9] = 0x6154EE;
-	rgb[10] = 0x2D15DA;
-	rgb[11] = 0x000373;
-	rgb[12] = 0x003a50;
-	rgb[13] = 0x107D2C;
-	rgb[14] = 0x39BC0E;
-	rgb[15] = 0x6DE601;
-	rgb[16] = 0x9AF500;
-	rgb[17] = 0xE7AB00;
-	rgb[18] = 0xFD6900;
-	rgb[19] = 0xEE2815;
-	rgb[20] = 0xB80064;
-	rgb[21] = 0x89008D;
-	rgb[22] = 0x4A22AB;
-	rgb[23] = 0x265DCE;
-	rgb[24] = 0x01A4E4;
-	rgb[25] = 0x00F5F5;
-	rgb[26] = 0x1BC3D5;
-	rgb[27] = 0x438CB8;
-	rgb[28] = 0x764196;
+	t_rgb			a;
+	t_rgb			b;
+	t_rgb			res;
+	const double	inv_n = 1.0 / t;
+	int				i;
+
+	a = (t_rgb){c1 >> 16 & 0xFF, c1 >> 8 & 0xFF, c1 & 0xFF};
+	b = (t_rgb){c2 >> 16 & 0xFF, c2 >> 8 & 0xFF, c2 & 0xFF};
+	i = 0;
+	if (c1 == c2)
+		while (i < t)
+			rgb[i++] = c1;
+	else
+	{
+		while (i < t)
+		{
+			res.r = a.r + (double)i * inv_n * (b.r - a.r);
+			res.g = a.g + (double)i * inv_n * (b.g - a.g);
+			res.b = a.b + (double)i * inv_n * (b.b - a.b);
+			rgb[i] = ((int)res.r << 16) | ((int)res.g << 8)
+				| ((int)res.b);
+			++i;
+		}
+	}
 }
 
-void	rgb_palette(t_config *g, int n)
+void	fill_gradient(t_config *g, int live, int n, int *rgb)
 {
-	if (n == 1)
+	int	i;
+	int	*indexes;
+	int	*colors;
+
+	colors = g->gradient->palette[live];
+	indexes = g->gradient->indexes;
+	i = 0;
+	while (i + 1 < n)
 	{
-		g->n_colors = 16;
-		colors_16(g->rgb);
+		lerp_hexa(colors[i], colors[i + 1],
+			indexes[i + 1] - indexes[i], &rgb[indexes[i]]);
+		++i;
 	}
-	else if (n == 2)
+	rgb[N_COLORS - 1] = colors[i];
+}
+
+void	init_palettes(t_config *g)
+{
+	t_gradient	*p;
+	int			i;
+
+	p = g->gradient;
+	palette_0(p->palette[0]);
+	palette_1(p->palette[1]);
+	palette_2(p->palette[2]);
+	palette_3(p->palette[3]);
+	palette_4(p->palette[4]);
+	i = 1;
+	while (i < N_PALETTES)
 	{
-		g->n_colors = 29;
-		colors_29(g->rgb);
+		fill_gradient(g, i, N_INDEXES, g->rgb[i]);
+		++i;
 	}
+	i = 0;
+	while (i < 16)
+	{
+		g->rgb[0][i] = p->palette[0][i];
+		++i;
+	}
+	g->live_palette = 0;
+	g->size_palette = 16;
 }

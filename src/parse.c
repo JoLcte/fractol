@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:50:19 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/24 13:23:11 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/27 14:54:38 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,6 @@ int	check_arg(const char *s1, const char *s2, int n)
 	return (0);
 }
 
-void	init_g(t_config *g)
-{
-	g->set = 1;
-	g->res = 1000;
-	g->canva_s = 3.0;
-	g->ul[X] = -g->canva_s / 2.0;
-	g->ul[Y] = g->canva_s / 2.0;
-	g->center[X] = 0.0;
-	g->center[Y] = 0.0;
-	g->factor = g->canva_s / g->res;
-	rgb_palette(g, 1);
-}
-
-static void	init_spec(t_config *g, int n)
-{
-	if (n == 1)
-	{
-		g->c[R] = 0.285;
-		g->c[I] = 0.01;
-	}
-	else if (n == -1)
-	{
-		g->ul[X] -= 0.42;
-		g->center[X] -= 0.42;
-		g->ul[Y] += 0.38;
-		g->center[Y] += 0.38;
-	}
-	else
-	{
-		g->center[X] -= 0.55;
-		g->ul[X] -= 0.55;
-	}
-}
-
 void	parse(t_config *g, char *s)
 {
 	const char	*s1 = "julia";
@@ -68,21 +34,21 @@ void	parse(t_config *g, char *s)
 	{
 		if (check_arg(s, s1, 5))
 			error_arg("'julia' is misspelled.");
-		g->set = 1;
+		g->set = JUL;
 		init_spec(g, g->set);
 	}
 	else if (*s == 'm')
 	{
 		if (check_arg(s, s2, 10))
 			error_arg("'mandelbrot' is misspelled.");
-		g->set = 0;
+		g->set = MDL;
 		init_spec(g, g->set);
 	}
 	else
 	{
 		if (check_arg(s, s3, 12))
 			error_arg("'burning_ship' is misspelled.");
-		g->set = -1;
+		g->set = BS;
 		init_spec(g, g->set);
 	}
 }

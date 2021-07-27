@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/24 10:57:24 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/07/28 00:34:58 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,39 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	exit_and_free(t_data *data)
+static void	destroy_mlx(t_data *data)
 {
 	mlx_do_key_autorepeaton(data->mlx);
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
+}
+
+int	exit_and_free(t_data *data)
+{
+	int			i;
+
+	destroy_mlx(data);
 	if (data->mlx)
 		free(data->mlx);
+	if (data->g->gradient->indexes)
+		free(data->g->gradient->indexes);
+	i = N_PALETTES;
+	while (--i >= 0)
+		free(data->g->gradient->palette[i]);
+	i = N_PALETTES;
+	while (--i >= 0)
+		free(data->g->rgb[i]);
+	if (data->g->gradient->palette)
+		free(data->g->gradient->palette);
+	if (data->g->rgb)
+		free(data->g->rgb);
+	if (data->g->gradient)
+		free(data->g->gradient);
 	if (data)
 		free(data);
 	exit(1);
 	return (1);
-}
-
-void	print_help(void)
-{
-	printf("\n   HELP MENU:\n");
-	printf("   ---------\n");
-	printf("   W or UP_ARROW = move up\n");
-	printf("   A or LEFT_ARROW = move left\n");
-	printf("   S or DOWN_ARROW = move down\n");
-	printf("   D or RIGHT_ARROW = move right\n");
-	printf("   SPACE to switch colors\n");
-	printf("   I to increase real c component for Julia set\n");
-	printf("   K to decrease real c component for Julia set\n");
-	printf("   J to increase imaginary c component for Julia set\n");
-	printf("   K to decrease imaginary c component for Julia set\n");
-	printf("   X for Julia set with c(-0.51, 0.52)\n");
-	printf("   Z for Julia set with c(0.285, 0.01)\n");
-	printf("   B to zoom to an interesting Burning Ship\n");
-	printf("   H to print this HELP MENU\n");
-	printf("   ESC to exit the program\n");
-	printf("   -------------------------------------------------\n");
 }
 
 int	get_mouse_scroll(int key, int x, int y, t_data *data)
@@ -74,20 +74,19 @@ int	get_keypress(int key, t_data *data)
 		return (exit_and_free(data));
 	else if (key == 104)
 		print_help();
-	else if (key == 65362 || key == 119)
-		move_up(data);
-	else if (key == 65364 || key == 115)
-		move_down(data);
-	else if (key == 65361 || key == 97)
-		move_left(data);
-	else if (key == 65363 || key == 100)
-		move_right(data);
+	else if ((key >= 65361 && key <= 65364) || key == 119 || key == 97
+			|| key == 100 || key == 115)
+		move_all(key, data);
+	else if (key == 61)
+		move_in(data);
+	else if (key == 45)
+		move_out(data);
 	else if (key == 32)
-		switch_palette(data);
+		change_palette(data);
 	else if ((key == 105 || key == 106 || key == 107 || key == 108
-			|| key == 120 || key == 122) && g->set == 1)
+			|| key == 120 || key == 122) && g->set == JUL)
 		change_julia(data, key);
-	else if (key == 98 && g->set == -1)
+	else if (key == 98 && g->set == BS)
 		change_burning_ship(data);
 	return (1);
 }

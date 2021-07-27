@@ -6,20 +6,22 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/07/24 12:32:25 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/07/27 23:53:18 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CCF = clang -Wall -Wextra -Werror -O3
-FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lbsd
+FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lbsd -lpthread
 
 OBJ_DIR = obj
 SRC_DIR = src
 
 SRC_F = burning_ship.c\
+	colors.c\
 	error.c\
 	key_move.c\
+	init.c\
 	julia.c\
 	mandelbrot.c\
 	mlx_utils.c\
