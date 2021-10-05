@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 16:17:35 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:27:01 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,25 @@ typedef struct s_gradient
 
 typedef struct s_rgb
 {
-	double r;
-	double g;
-	double b;
+	double	r;
+	double	g;
+	double	b;
 }	t_rgb;
 
 typedef struct s_config
 {
-	t_gradient *gradient;
-	double	c[2];
-	double	center[2];
-	double	ul[2];
-	double	canva_s;
-	double	factor;
-	double	res;
-	int		**rgb;
-	int 	live_palette;
-	int	size_palette;
-	int		set;
-	int		shift;
+	t_gradient	*gradient;
+	double		c[2];
+	double		center[2];
+	double		ul[2];
+	double		canva_s;
+	double		factor;
+	double		res;
+	int			**rgb;
+	int			live_palette;
+	int			size_palette;
+	int			set;
+	int			shift;
 }	t_config;
 
 typedef struct s_data
@@ -113,9 +113,8 @@ typedef struct s_data
 typedef struct s_tdata
 {
 	t_data	*data;
-	int	id;
+	int		id;
 }	t_tdata;
-
 
 /*
 **	PARSING
