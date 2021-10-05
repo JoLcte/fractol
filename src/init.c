@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 01:47:58 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/09/02 19:35:37 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:22:33 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ void	init_g(t_config *g)
 		check_malloc(g, (void **)&g->rgb[i++], sizeof(int), N_COLORS);
 	init_indexes(gd->indexes, N_COLORS, N_INDEXES);
 	init_palettes(g);
+	init_spec(g, g->set);
 }

@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 15:35:38 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:17:35 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,10 @@ void	parse(t_config *g, char *s);
 **	ERROR
 */
 
-void	error_arg(const char *s);
+void	error_arg(void);
+void	error_str(const char *s);
 void	error_colors(const char *s, t_config *g);
 void	error_config(const char *s, t_data *data);
-void	error_type(void);
 void	print_help(t_config *g, int key);
 
 /*

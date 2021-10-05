@@ -6,18 +6,11 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 16:14:43 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 15:45:43 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:18:14 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	error_arg(const char *s)
-{
-	printf("\e[38;5;196mError:\n\e[m");
-	printf("%s\n", s);
-	exit(-1);
-}
 
 void	error_colors(const char *s, t_config *g)
 {
@@ -73,10 +66,18 @@ void	error_config(const char *s, t_data *data)
 	exit(-1);
 }
 
-void	error_type(void)
+void	error_str(const char *s)
 {
 	printf("\e[38;5;196mError:\e[m\n");
-	printf("Type 'julia, 'mandelbrot' or 'burningship' for a fractal type.\n");
+	printf("%s\n", s);
+	exit(-1);
+}
+
+void	error_arg(void)
+{
+	printf("\e[38;5;196mError:\e[m\n");
+	printf("Fractale types: 'julia', 'mandelbrot' or 'burning_ship'\n");
+	printf("ex: ./fractol julia\n");
 	exit(-1);
 }
 

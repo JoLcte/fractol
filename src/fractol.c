@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:27:57 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 16:06:47 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:22:02 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,17 @@ int	main(int ac, char **av)
 	t_data		*data;
 	t_config	g;
 
-	if (ac == 2)
+	if (ac > 1)
 	{
-		if (*av[1] != 'j' && *av[1] != 'm' && *av[1] != 'b')
-			error_type();
-		else
-		{
-			init_g(&g);
-			parse(&g, av[1]);
-			data = (t_data *)malloc(sizeof(t_data));
-			if (!data)
-				error_arg("Memory could not be allocated.");
-			data->g = &g;
-			fract_ol(data);
-		}
+		parse(&g, av[1]);
+		init_g(&g);
+		data = (t_data *)malloc(sizeof(t_data));
+		if (!data)
+			error_str("Memory could not be allocated.");
+		data->g = &g;
+		fract_ol(data);
 	}
 	else
-		error_type();
+		error_arg();
 	return (0);
 }
