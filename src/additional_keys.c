@@ -6,17 +6,30 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 00:00:56 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/27 23:54:18 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:22:36 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	color_shift(t_data *data)
+{
+	data->g->shift = (data->g->shift + 1) % data->g->size_palette;
+	if (data->g->set == JUL)
+		julia_loop(data);
+	else if (data->g->set == MDL)
+		mandelbrot_loop(data);
+	else
+		burning_ship_loop(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
 
 void	change_palette(t_data *data)
 {
 	t_config	*g;
 
 	g = data->g;
+	g->shift = 0;
 	if (g->live_palette < N_PALETTES - 1)
 	{
 		g->size_palette = N_COLORS;

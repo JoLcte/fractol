@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:29:15 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/28 00:41:55 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:24:42 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init_indexes(int *indexes, int size, int n)
 	int			i;
 
 	i = 0;
+	if (n < 16)
+		n = 16;
 	while (i < n - 1)
 	{
 		indexes[i] = scalar * i;

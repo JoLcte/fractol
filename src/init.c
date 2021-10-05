@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 01:47:58 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/28 00:21:52 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/09/02 19:35:37 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_spec(t_config *g, int set)
 
 void	init_start(t_config *g)
 {
-	g->res = 1000;
+	g->res = 1400;
 	g->canva_s = 3.0;
 	g->ul[X] = -g->canva_s / 2.0;
 	g->ul[Y] = g->canva_s / 2.0;

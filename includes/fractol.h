@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/28 00:34:44 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:35:38 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,51 @@
 
 # include <pthread.h>
 
+/*
+**	CLEARER ARRAYS
+*/
+
 # define X 0
 # define Y 1
 # define R 0
 # define I 1
+
+/*
+**	FRACTOL TYPES
+*/
+
 # define JUL 1
 # define MDL 0
 # define BS -1
+
+/*
+**	COLORS HANDLE
+**	Note: N_INDEXES must be <= N_COLORS and >= number of colors in palette
+*/
+
 # define N_PALETTES 5
-# define N_INDEXES 16
-# define N_COLORS 64
+# ifndef N_INDEXES
+#  define N_INDEXES 16
+# endif
+# ifndef N_COLORS
+#  define N_COLORS 64
+# endif
 
 # define N_THREADS 4
 
 /*
-** DATA
+**	SET YOUR JULIA
+*/
+
+# ifndef CR
+#  define CR 0.285
+# endif
+# ifndef CI
+#  define CI 0.010
+# endif
+
+/*
+**	DATA
 */
 
 typedef struct s_gradient
@@ -65,6 +95,7 @@ typedef struct s_config
 	int 	live_palette;
 	int	size_palette;
 	int		set;
+	int		shift;
 }	t_config;
 
 typedef struct s_data
@@ -79,14 +110,11 @@ typedef struct s_data
 	int			endian;
 }	t_data;
 
-
-
 typedef struct s_tdata
 {
 	t_data	*data;
 	int	id;
 }	t_tdata;
-
 
 
 /*
@@ -111,6 +139,7 @@ void	error_arg(const char *s);
 void	error_colors(const char *s, t_config *g);
 void	error_config(const char *s, t_data *data);
 void	error_type(void);
+void	print_help(t_config *g, int key);
 
 /*
 **	COLORS
@@ -129,6 +158,7 @@ void	palette_4(int *palette);
 void	change_burning_ship(t_data *data);
 void	change_julia(t_data *data, int key);
 void	change_palette(t_data *data);
+void	color_shift(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_and_free(t_data *data);
 int		get_keypress(int key, t_data *data);
@@ -142,7 +172,6 @@ void	move_in(t_data *data);
 void	move_out(t_data *data);
 void	zoom_in(int x, int y, t_data *data);
 void	zoom_out(int x, int y, t_data *data);
-void	print_help(void);
 
 /*
 **	FRACTOL

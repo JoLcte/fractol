@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 16:14:43 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/28 00:20:16 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:45:43 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,28 @@ void	error_type(void)
 	exit(-1);
 }
 
-void	print_help(void)
+void	print_help(t_config *g, int key)
 {
+	if (key == 112 && g->set == JUL)
+	{
+		printf("Julia: c[R] = %.4f, c[I] = %.4f\n", g->c[R], g->c[I]);
+		return ;
+	}
 	printf("\n   HELP MENU:\n");
 	printf("   ---------\n");
 	printf("   W or UP_ARROW = move up\n");
 	printf("   A or LEFT_ARROW = move left\n");
 	printf("   S or DOWN_ARROW = move down\n");
 	printf("   D or RIGHT_ARROW = move right\n");
+	printf("   + to zoom in\n");
+	printf("   - to zoom out\n");
 	printf("   SPACE to switch colors\n");
 	printf("   I to increase real c component for Julia set\n");
 	printf("   K to decrease real c component for Julia set\n");
 	printf("   J to increase imaginary c component for Julia set\n");
 	printf("   K to decrease imaginary c component for Julia set\n");
-	printf("   X for Julia set with c(-0.51, 0.52)\n");
+	printf("   P to print c constant coordinates for Julia set\n");
+	printf("   X for Julia set with c(-0.785, 0.152)\n");
 	printf("   Z for Julia set with c(0.285, 0.01)\n");
 	printf("   B to zoom to an interesting Burning Ship\n");
 	printf("   H to print this HELP MENU\n");

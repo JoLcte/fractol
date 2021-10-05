@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:29:53 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/07/28 00:13:10 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:20:20 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	mandelbrot_magic(t_config *g, double cr, double ci)
 		z[X] = tmp;
 	}
 	if (n < n_max)
-		color = g->rgb[g->live_palette][n % g->size_palette];
+		color = g->rgb[g->live_palette][(n + g->shift)
+			% g->size_palette];
 	return (color);
 }
 
