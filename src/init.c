@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 01:47:58 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 16:22:33 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:29:31 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	init_spec(t_config *g, int set)
 	}
 	else if (set == BS)
 	{
-		g->ul[X] -= 0.42;
-		g->center[X] -= 0.42;
-		g->ul[Y] += 0.38;
-		g->center[Y] += 0.38;
+		g->ul[X] = -2.076;
+		g->center[X] = -2.916;
+		g->ul[Y] = 1.304;
+		g->center[Y] = -0.964;
 	}
 	else
 	{

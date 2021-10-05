@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:29:53 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 15:20:20 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:28:42 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	mandelbrot_loop(t_data *data)
 		while (i < g->res)
 		{
 			color = mandelbrot_magic(g, g->ul[X] + (double)i * g->factor,
-					-(g->ul[Y] - (double)j * g->factor));
+					(g->ul[Y] - (double)j * g->factor));
 			my_mlx_pixel_put(data, i, j, color);
 			++i;
 		}

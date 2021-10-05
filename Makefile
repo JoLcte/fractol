@@ -6,7 +6,7 @@
 #    By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/15 23:17:06 by jlecomte          #+#    #+#              #
-#    Updated: 2021/10/05 15:17:32 by jlecomte         ###   ########.fr        #
+#    Updated: 2021/10/05 18:31:56 by jlecomte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLAGS = -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lpthread
 OBJ_DIR = obj
 SRC_DIR = src
 
-SRC_F = burning_ship.c\
+SRC_F = additional_keys.c\
+	burning_ship.c\
 	colors.c\
 	error.c\
 	key_move.c\
@@ -27,8 +28,8 @@ SRC_F = burning_ship.c\
 	mlx_utils.c\
 	palette.c\
 	parse.c\
+	print.c\
 	zoom.c\
-	additional_keys.c\
 	fractol.c
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_F))
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_F:%.c=%.o))
@@ -36,7 +37,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_F:%.c=%.o))
 HEADER = includes
 cr = 0.285
 ci = 0.010
-n_colors = 16
+n_colors = 64
 n_indexes = 16
 CCF += -D CR=$(cr) -D CI=$(ci) -D N_COLORS=$(n_colors) -D N_INDEXES=$(n_indexes)
 

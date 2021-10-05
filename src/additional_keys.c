@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 00:00:56 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 15:22:36 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:30:13 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	change_burning_ship(t_data *data)
 	g = data->g;
 	g->canva_s = 0.1;
 	g->factor = g->canva_s / g->res;
-	g->ul[X] = -1.8;
-	g->ul[Y] = 0.09;
+	g->ul[X] = -1.8000;
+	g->ul[Y] = 0.0196;
 	g->center[X] = g->ul[X] + g->canva_s / 2;
 	g->center[Y] = g->ul[Y] - g->canva_s / 2;
 	burning_ship_loop(data);
