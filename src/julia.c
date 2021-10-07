@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:28:56 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 15:20:09 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:14:26 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	julia_magic(t_config *g, double a, double b)
 {
 	double		tmp;
-	const int	n_max = 1000;
+	const int	n_max = N_MAX;
 	int			n;
 	int			color;
 

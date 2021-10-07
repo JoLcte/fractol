@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 00:00:56 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 18:30:13 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:13:00 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	change_julia(t_data *data, int key)
 	if (key == 120)
 	{
 		init_start(g);
-		g->c[R] = -0.8;
-		g->c[I] = 0.156;
+		g->c[R] = -0.785;
+		g->c[I] = 0.152;
 	}
 	else if (key == 122)
 	{
 		init_start(g);
-		g->c[R] = 0.285;
-		g->c[I] = 0.01;
+		g->c[R] = CR;
+		g->c[I] = CI;
 	}
 	else if (key == 105)
 		g->c[R] += 0.001;

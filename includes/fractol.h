@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 16:28:26 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 16:27:01 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:21:07 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <unistd.h>
 
 # include <pthread.h>
+
+# ifndef RESOL
+#  define RESOL 1000
+# endif
 
 /*
 **	CLEARER ARRAYS
@@ -50,6 +54,9 @@
 # endif
 # ifndef N_COLORS
 #  define N_COLORS 64
+# endif
+# ifndef N_MAX
+#  define N_MAX 500
 # endif
 
 # define N_THREADS 4

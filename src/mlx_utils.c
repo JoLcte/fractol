@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 15:51:38 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 18:28:25 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:30:31 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	get_keypress(int key, t_data *data)
 	else if ((key >= 65361 && key <= 65364) || key == 119 || key == 97
 		|| key == 100 || key == 115)
 		move_all(key, data);
-	else if (key == 61)
+	else if (key == 61 || key == 110)
 		move_in(data);
-	else if (key == 45)
+	else if (key == 45 || key == 109)
 		move_out(data);
 	else if (key == 32)
 		change_palette(data);

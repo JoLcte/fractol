@@ -6,7 +6,7 @@
 /*   By: jlecomte <jlecomte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:30:33 by jlecomte          #+#    #+#             */
-/*   Updated: 2021/10/05 18:28:52 by jlecomte         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:16:48 by jlecomte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	burning_ship_magic(t_config *g, double cr, double ci)
 {
 	double		z[2];
 	double		tmp;
-	const int	n_max = 1000;
+	const int	n_max = N_MAX;
 	int			n;
 	int			color;
 
@@ -74,7 +74,7 @@ static void	tbship(t_data *data, int *val, int *max)
 		while (i < max[X])
 		{
 			color = burning_ship_magic(g, g->ul[X] + (double)i * g->factor,
-					-(g->ul[Y] - (double)j * g->factor));
+					(g->ul[Y] - (double)j * g->factor));
 			my_mlx_pixel_put(data, i, j, color);
 			++i;
 		}
