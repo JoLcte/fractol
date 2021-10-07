@@ -1,4 +1,4 @@
-# fractol
+# fract_ol
 
 Here is a fun graphic project from 42School I took time to create, just because the color techniques were interesting, and the speed and fluidity handling too.
 On that last point, my thread handling isn't good enough. I can optimize it, and we still can see some weird images cut while moving to much before it calculated
