@@ -32,7 +32,7 @@ static void	print_keys(t_config *g)
 	printf("   I to increase real c component for Julia set\n");
 	printf("   K to decrease real c component for Julia set\n");
 	printf("   J to increase imaginary c component for Julia set\n");
-	printf("   K to decrease imaginary c component for Julia set\n");
+	printf("   L to decrease imaginary c component for Julia set\n");
 	printf("   P to print c constant coordinates for Julia set\n");
 	printf("   X for Julia set with c(-0.7850, 0.1520)\n");
 	printf("   Z for Julia set with c(%.4f, %.4f)\n", g->c[R], g->c[I]);
