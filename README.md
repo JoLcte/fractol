@@ -1,7 +1,7 @@
 # fract_ol
 
 Here is a fun graphic project from 42School I took time to create, just because the color techniques were interesting, and the speed and fluidity handling too.
-On that last point, my thread handling isn't good enough. I can optimize it (working with lines instead of dividing the screen into 4), and we still can see some weird images cut while moving to much before it calculated
+On that last point, my thread handling isn't good enough. I can optimize it (working with lines instead of dividing the screen into 4), and we still can see some weird line render cuts while moving to much before it calculated
 the last image result. 
 I could work on it more, but time is precious and I still have so many other important things to learn...
 
